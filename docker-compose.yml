@@ -1,0 +1,16 @@
+version: "3"
+services:
+  nginx:
+    depends_on:
+      - client
+    restart: always
+    build:
+      dockerfile: dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+
+  client:
+    build:
+      dockerfile: dockerfile
+      context: ./client
