@@ -1,0 +1,13 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+after_success:
+  - docker build -t bongster228/docker-deploy-client ./client
+  - docker build -t bongster228/docker-deploy-nginx ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push bongster228/docker-deploy-client
+  - docker push bongster228/docker-deploy-nginx

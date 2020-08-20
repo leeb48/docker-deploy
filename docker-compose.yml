@@ -5,12 +5,12 @@ services:
       - client
     restart: always
     build:
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
       context: ./nginx
     ports:
       - "80:80"
 
   client:
     build:
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
       context: ./client
