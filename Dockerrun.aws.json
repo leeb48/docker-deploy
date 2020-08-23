@@ -12,7 +12,7 @@
       "name": "api",
       "image": "bongster228/docker-deploy-api",
       "hostname": "api",
-      "essential": "false",
+      "essential": false,
       "memory": 128
     },
     {
