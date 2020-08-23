@@ -7,10 +7,12 @@ services:
 after_success:
   - docker build -t bongster228/docker-deploy-client ./client
   - docker build -t bongster228/docker-deploy-nginx ./nginx
+  - docker build -t bongster228/docker-deploy-api ./api
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   - docker push bongster228/docker-deploy-client
   - docker push bongster228/docker-deploy-nginx
+  - docker push bonster228/docker-deploy-api
 
 deploy:
   provider: elasticbeanstalk
