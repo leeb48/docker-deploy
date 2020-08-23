@@ -43,7 +43,7 @@ function App() {
     <div className="App">
       <form onSubmit={onSubmit}>
         <input type="text" onChange={onChange} value={name} />
-        <button>Submit</button>
+        <button>Submit Button</button>
       </form>
     </div>
   );
