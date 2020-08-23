@@ -1,13 +1,14 @@
 version: "3"
 services:
   nginx:
+    image: bongster228/docker-deploy-nginx
     depends_on:
       - client
       - api
     restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./nginx
     ports:
       - "80:80"
 
@@ -39,13 +40,14 @@ services:
       - postgres
 
   api:
-    build:
-      dockerfile: Dockerfile
-      context: ./api
-    volumes:
-      - ./api:/app
-      - /app/node_modules
-      - /app/dist
+    image: bongster228/docker-deploy-api
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./api
+    # volumes:
+    #   - ./api:/app
+    #   - /app/node_modules
+    #   - /app/dist
     environment:
       DB_HOST: postgres
       DB_PORT: 5432
@@ -57,9 +59,10 @@ services:
       - postgres
 
   client:
-    build:
-      dockerfile: Dockerfile
-      context: ./client
+    image: bongster228/docker-deploy-client
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./client
 
 volumes:
   db-data:
