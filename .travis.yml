@@ -17,8 +17,8 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: us-west-1
-  app: docker-deploy
-  env: DockerDeploy-env
+  app: docker-learn
+  env: DockerLearn-env
   bucket_name: elasticbeanstalk-us-west-1-278374142069
   bucket_path: docker-deploy
   on:
