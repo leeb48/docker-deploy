@@ -1,24 +1,50 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
+  useEffect(() => {
+    async function fetchApi(): Promise<void> {
+      const customApi = axios.create({
+        baseURL: "/api",
+      });
+
+      const res = await customApi.get("/");
+
+      console.log(res.data);
+    }
+
+    fetchApi();
+  }, []);
+
+  const [name, setName] = useState("");
+
+  const onChange = (e: React.FormEvent<HTMLInputElement>) =>
+    setName(e.currentTarget.value);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const customApi = axios.create({
+      baseURL: "/api",
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    console.log(name);
+
+    await customApi.post("/", { name }, config);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn To Deploy With Docker and AWS
-        </a>
-      </header>
+      <form onSubmit={onSubmit}>
+        <input type="text" onChange={onChange} value={name} />
+        <button>Submit</button>
+      </form>
     </div>
   );
 }
