@@ -12,7 +12,7 @@ after_success:
 
   - docker push bongster228/docker-deploy-client
   - docker push bongster228/docker-deploy-nginx
-  - docker push bonster228/docker-deploy-api
+  - docker push bongster228/docker-deploy-api
 
 deploy:
   provider: elasticbeanstalk
